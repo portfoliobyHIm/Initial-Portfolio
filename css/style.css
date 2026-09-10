@@ -24,7 +24,7 @@
   --text-peach-primary: #1e2229;
   --text-peach-secondary: #4a5568;
   --text-peach-muted: #718096;
-  --grid-line-color: rgba(160, 120, 100, 0.09);
+  --grid-line-color: rgba(160, 120, 100, 0.13);
 
   --bg-yellow: var(--bg-peach);
   --bg-yellow-light: var(--bg-peach-light);
@@ -603,10 +603,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   ABOUT ME SECTION
+   ABOUT ME SECTION (WARM PEACH GRAPH-PAPER THEME)
    ========================================================================== */
+#about,
 .about-section {
   position: relative;
+  background-color: var(--bg-peach) !important;
+  color: var(--text-peach-primary) !important;
+  background-image: 
+    linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px) !important;
+  background-size: 32px 32px !important;
+}
+
+#about::before,
+.about-section::before {
+  display: none !important;
 }
 
 .about-grid {
@@ -663,8 +675,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .about-bio-text {
   font-size: 1.125rem;
-  color: var(--text-yellow-secondary);
+  color: var(--text-peach-secondary) !important;
   line-height: 1.75;
+}
+
+.about-bio-text strong {
+  color: var(--text-peach-primary) !important;
+  font-weight: 700;
 }
 
 .about-stats-row {
@@ -702,7 +719,7 @@ h1, h2, h3, h4, h5, h6 {
    TOOLKIT SECTION
    ========================================================================== */
 .toolkit-section {
-  background: #090a0f;
+  background: #090a0f !important;
   padding: 60px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -768,20 +785,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   WORK SECTION & BENTO GRID
+   WORK SECTION & BENTO GRID (BRIGHT STUDIO CANVAS THEME)
    ========================================================================== */
-.work-section {
-  position: relative;
-}
-
+#work,
+.work-section,
 .work-section.hero-section-light {
-  background: radial-gradient(circle at 50% 35%, #ffffff 0%, #f6f5f0 60%, #eae8e1 100%);
-  color: #18191f;
+  position: relative;
+  background: radial-gradient(circle at 50% 35%, #ffffff 0%, #f6f5f0 60%, #eae8e1 100%) !important;
+  color: #18191f !important;
 }
 
-.work-section.hero-section-light .section-title {
-  color: #18191f;
-  margin-bottom: 36px;
+#work::before,
+.work-section::before {
+  display: none !important;
+}
+
+.work-section .section-title,
+.video-subheading-title {
+  color: #18191f !important;
+  margin-bottom: 10px;
+}
+
+.video-subheading-desc {
+  color: #4b5563 !important;
 }
 
 .bento-grid {
@@ -791,13 +817,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .bento-card {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
   border-radius: var(--radius-xl);
   padding: 32px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
+}
+
+.bento-card h3 {
+  color: #18191f !important;
+}
+
+.bento-card p {
+  color: #4b5563 !important;
 }
 
 .bento-card.col-span-12 { grid-column: span 12; }
@@ -937,10 +971,26 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   CONNECT SECTION
+   CONNECT SECTION (WARM PEACH GRAPH-PAPER THEME)
    ========================================================================== */
+#connect,
 .connect-section {
   position: relative;
+  background-color: var(--bg-peach) !important;
+  color: var(--text-peach-primary) !important;
+  background-image: 
+    linear-gradient(to right, var(--grid-line-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line-color) 1px, transparent 1px) !important;
+  background-size: 32px 32px !important;
+}
+
+#connect::before,
+.connect-section::before {
+  display: none !important;
+}
+
+.connect-section .section-title {
+  color: var(--text-peach-primary) !important;
 }
 
 .connect-grid {
@@ -956,14 +1006,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .connect-card {
-  background: var(--bg-yellow-card);
-  border: 1px solid var(--border-yellow);
+  background: var(--bg-yellow-card) !important;
+  border: 1px solid var(--border-yellow) !important;
   border-radius: var(--radius-xl);
   padding: 28px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.connect-card h4 {
+  color: var(--text-yellow-primary) !important;
+}
+
+.connect-handle {
+  color: var(--text-yellow-muted) !important;
+}
+
+.connect-cta-btn {
+  color: var(--text-yellow-primary) !important;
+  border-top: 1px solid var(--border-yellow) !important;
 }
 
 .connect-icon-box {
@@ -983,11 +1046,19 @@ h1, h2, h3, h4, h5, h6 {
 .connect-icon-box.email { background: #0f172a; }
 
 .connect-form-card {
-  background: var(--bg-yellow-card);
-  border: 1px solid var(--border-yellow);
+  background: var(--bg-yellow-card) !important;
+  border: 1px solid var(--border-yellow) !important;
   border-radius: var(--radius-xl);
   padding: 36px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+}
+
+.connect-form-card h3 {
+  color: var(--text-yellow-primary) !important;
+}
+
+.connect-form-card p {
+  color: var(--text-yellow-secondary) !important;
 }
 
 .form-group {
@@ -1012,6 +1083,7 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(255, 255, 255, 0.9);
   font-family: inherit;
   font-size: 0.9375rem;
+  color: var(--text-yellow-primary);
 }
 
 textarea.form-control {
@@ -1072,7 +1144,7 @@ textarea.form-control {
 }
 
 /* ==========================================================================
-   MOBILE HERO & RESPONSIVENESS (MATCHED DESKTOP BACKGROUND + SCROLL ENABLED)
+   MOBILE HERO & RESPONSIVENESS (1-TO-1 DESKTOP THEMES & BACKGROUNDS MATCH)
    ========================================================================== */
 @media (max-width: 768px) {
   /* 1. Ensure natural vertical page scrolling throughout mobile document */
@@ -1084,7 +1156,7 @@ textarea.form-control {
     touch-action: auto !important;
   }
 
-  /* 2. Full-bleed Hero Stage (Matches Desktop Obsidian Background 1-to-1) */
+  /* 2. Full-bleed Hero Stage: Matches Desktop Obsidian Background */
   .hero-section,
   .section_hero {
     position: relative !important;
@@ -1238,20 +1310,33 @@ textarea.form-control {
     display: inline-block !important;
   }
 
-  /* 8. Stack and display all following portfolio sections cleanly on mobile */
+  /* 8. EXACT BACKGROUND MATCH: ABOUT ME (Peach Warm Graph Paper with Visible Grid) */
+  #about,
   .about-section,
-  .toolkit-section,
-  .work-section,
-  .connect-section {
-    display: block !important;
-    position: relative !important;
-    width: 100% !important;
-    z-index: 30 !important;
+  .section-peach-grid,
+  .section-yellow-grid {
+    background-color: #f7ede2 !important;
+    color: #1e2229 !important;
+    background-image: 
+      linear-gradient(to right, rgba(160, 120, 100, 0.13) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(160, 120, 100, 0.13) 1px, transparent 1px) !important;
+    background-size: 32px 32px !important;
   }
 
-  .about-grid,
-  .connect-grid,
-  .connect-cards-list {
+  #about::before,
+  .about-section::before {
+    display: none !important;
+  }
+
+  .about-bio-text {
+    color: #4a5568 !important;
+  }
+
+  .about-bio-text strong {
+    color: #1e2229 !important;
+  }
+
+  .about-grid {
     display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 28px !important;
@@ -1263,6 +1348,29 @@ textarea.form-control {
     gap: 12px !important;
   }
 
+  /* 9. EXACT BACKGROUND MATCH: WORK SECTION (Light Studio Canvas & White Bento Cards) */
+  #work,
+  .work-section,
+  .work-section.hero-section-light {
+    background: radial-gradient(circle at 50% 35%, #ffffff 0%, #f6f5f0 60%, #eae8e1 100%) !important;
+    color: #18191f !important;
+  }
+
+  #work::before,
+  .work-section::before {
+    display: none !important;
+  }
+
+  .work-section .section-title,
+  .video-subheading-title {
+    color: #18191f !important;
+  }
+
+  .video-subheading-desc,
+  .bento-hero-video-footer p {
+    color: #4b5563 !important;
+  }
+
   .bento-grid {
     display: flex !important;
     flex-direction: column !important;
@@ -1270,7 +1378,77 @@ textarea.form-control {
   }
 
   .bento-card {
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
     width: 100% !important;
     grid-column: auto !important;
+  }
+
+  .bento-card h3 {
+    color: #18191f !important;
+  }
+
+  .bento-card p {
+    color: #4b5563 !important;
+  }
+
+  .bento-card-badge {
+    background: rgba(2, 132, 199, 0.08) !important;
+    color: #0284c7 !important;
+    border: 1px solid rgba(2, 132, 199, 0.2) !important;
+  }
+
+  .tag-pill {
+    background: #f1f5f9 !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #334155 !important;
+  }
+
+  .btn-card-link {
+    background: #18191f !important;
+    color: #ffffff !important;
+  }
+
+  /* 10. EXACT BACKGROUND MATCH: CONNECT SECTION (Peach Graph Paper) */
+  #connect,
+  .connect-section {
+    background-color: #f7ede2 !important;
+    color: #1e2229 !important;
+    background-image: 
+      linear-gradient(to right, rgba(160, 120, 100, 0.13) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(160, 120, 100, 0.13) 1px, transparent 1px) !important;
+    background-size: 32px 32px !important;
+  }
+
+  #connect::before,
+  .connect-section::before {
+    display: none !important;
+  }
+
+  .connect-section .section-title {
+    color: #1e2229 !important;
+  }
+
+  .connect-grid,
+  .connect-cards-list {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .connect-card {
+    background: rgba(255, 255, 255, 0.88) !important;
+    border: 1px solid rgba(180, 135, 115, 0.18) !important;
+  }
+
+  .connect-card h4,
+  .connect-cta-btn {
+    color: #1e2229 !important;
+  }
+
+  .connect-card p,
+  .connect-form-card p {
+    color: #4a5568 !important;
   }
 }
