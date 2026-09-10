@@ -132,13 +132,19 @@
         <div id="hero-portrait-stage" class="hero_portrait_stage hero-image-wrapper">
           <!-- Layer 1: Frosted/Blurred Background State -->
           <div class="portrait-layer-frosted">
-            <img src="assets/images/hero_portrait.jpg" alt="Frosted Portrait" class="hero-img img-blur">
+            <picture>
+              <source media="(max-width: 768px)" srcset="assets/images/hero_portrait_mobile.jpg">
+              <img src="assets/images/hero_portrait.jpg" alt="Frosted Portrait" class="hero-img img-blur">
+            </picture>
             <div class="glass-sheet-tint"></div>
           </div>
 
           <!-- Layer 2: Clear Image Layer (Revealed via dynamic CSS radial mask) -->
           <div id="hero-reveal-layer" class="portrait-layer-clear">
-            <img src="assets/images/hero_portrait.jpg" alt="Clear Portrait" class="hero-img img-sharp">
+            <picture>
+              <source media="(max-width: 768px)" srcset="assets/images/hero_portrait_mobile.jpg">
+              <img src="assets/images/hero_portrait.jpg" alt="Clear Portrait" class="hero-img img-sharp">
+            </picture>
           </div>
 
           <!-- Interactive Cursor Reticle / Lens Ring -->
