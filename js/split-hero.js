@@ -3,13 +3,18 @@
  * HIGH-PERFORMANCE SQUARE CLIP-PATH HOVER REVEAL CONTROLLER (220PX)
  * ==========================================================================
  * Square clip-path reveal with smooth cursor lerp momentum.
- * Dynamically computes 4 square boundaries (--sq-left, --sq-right, --sq-top, --sq-bottom).
+ * Desktop mouse-only: touch listeners removed to allow normal mobile scrolling.
  */
 
 (function () {
   'use strict';
 
   function initSquareClipPathHero() {
+    // Disable completely on mobile screens under 768px
+    if (window.innerWidth <= 768) {
+      return;
+    }
+
     const stage = document.getElementById('hero-portrait-stage');
     const revealLayer = document.getElementById('hero-reveal-layer');
     const reticle = document.getElementById('hero-reticle');
@@ -31,54 +36,36 @@
       currentX = targetX;
       currentY = targetY;
 
+      // Mouse Enter
       stage.addEventListener('mouseenter', (e) => {
         isHovered = true;
-        targetSize = 220; // 220px square reticle box dimensions
+        targetSize = 220;
         reticle.classList.add('is-active');
         const rect = stage.getBoundingClientRect();
         targetX = e.clientX - rect.left;
         targetY = e.clientY - rect.top;
       });
 
+      // Mouse Leave
       stage.addEventListener('mouseleave', () => {
         isHovered = false;
         targetSize = 0;
         reticle.classList.remove('is-active');
       });
 
+      // Mouse Move
       stage.addEventListener('mousemove', (e) => {
         const rect = stage.getBoundingClientRect();
         targetX = e.clientX - rect.left;
         targetY = e.clientY - rect.top;
       });
 
-      // Touch events support for mobile / tablet devices
-      stage.addEventListener('touchstart', (e) => {
-        if (e.touches && e.touches[0]) {
-          isHovered = true;
-          targetSize = 220;
-          reticle.classList.add('is-active');
-          const rect = stage.getBoundingClientRect();
-          targetX = e.touches[0].clientX - rect.left;
-          targetY = e.touches[0].clientY - rect.top;
-        }
-      }, { passive: true });
-
-      stage.addEventListener('touchmove', (e) => {
-        if (e.touches && e.touches[0]) {
-          const rect = stage.getBoundingClientRect();
-          targetX = e.touches[0].clientX - rect.left;
-          targetY = e.touches[0].clientY - rect.top;
-        }
-      }, { passive: true });
-
-      stage.addEventListener('touchend', () => {
-        isHovered = false;
-        targetSize = 0;
-        reticle.classList.remove('is-active');
-      });
-
       function animate() {
+        // Stop animating if screen was resized to mobile
+        if (window.innerWidth <= 768) {
+          return;
+        }
+
         // Lerp smooth movement physics
         currentX += (targetX - currentX) * 0.14;
         currentY += (targetY - currentY) * 0.14;
