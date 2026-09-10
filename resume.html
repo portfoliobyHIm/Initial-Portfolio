@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Himanshu Kumar — Curriculum Vitae / Resume</title>
+  <meta name="description" content="Official Resume of Himanshu Kumar — Special Educator (Visual Impairment, CTET Qualified) & Digital Content Specialist.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #18191f;
+      --accent: #0284c7;
+      --accent-dark: #0369a1;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --font-main: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg);
+      color: var(--text-dark);
+      line-height: 1.55;
+      padding: 40px 20px;
+    }
+
+    .resume-wrapper {
+      max-width: 920px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border);
+      padding: 44px 48px;
+      position: relative;
+    }
+
+    /* Top Action Bar */
+    .action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-main);
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: 9999px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-back {
+      background: #f1f5f9;
+      color: #334155;
+      border: 1px solid #cbd5e1;
+    }
+
+    .btn-back:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .btn-print {
+      background: var(--primary);
+      color: #ffffff;
+      border: 1px solid var(--primary);
+    }
+
+    .btn-print:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Resume Header */
+    .resume-header {
+      text-align: center;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+      background: #fdfbf7;
+      padding: 24px 20px;
+      border-radius: 12px;
+      border: 1px solid #ede8df;
+    }
+
+    .resume-name {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+
+    .resume-subtitle {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #475569;
+      margin-bottom: 14px;
+    }
+
+    .resume-contacts {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.9375rem;
+      color: #334155;
+    }
+
+    .resume-contacts a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .resume-contacts a:hover {
+      color: var(--accent);
+    }
+
+    /* 2-Column Body Layout */
+    .resume-body-grid {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 36px;
+    }
+
+    /* Section Styling */
+    .section {
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 5px;
+      margin-bottom: 14px;
+    }
+
+    .about-box {
+      font-size: 0.9125rem;
+      color: #334155;
+      line-height: 1.65;
+      text-align: justify;
+    }
+
+    /* Left Sidebar: Education Items */
+    .edu-block {
+      margin-bottom: 16px;
+    }
+
+    .edu-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .edu-inst {
+      font-size: 0.875rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.35;
+      text-transform: uppercase;
+    }
+
+    .edu-degree {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 2px;
+    }
+
+    .edu-year {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: #64748b;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* Right Column: Experience Items */
+    .exp-item {
+      margin-bottom: 20px;
+    }
+
+    .exp-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .exp-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .exp-org {
+      font-size: 0.975rem;
+      font-weight: 800;
+      color: #0f172a;
+      text-transform: uppercase;
+    }
+
+    .exp-date {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: #475569;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .exp-role {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #0284c7;
+      margin-bottom: 6px;
+    }
+
+    .roles-subtitle {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+    }
+
+    .exp-bullets {
+      padding-left: 18px;
+      font-size: 0.9rem;
+      color: #334155;
+    }
+
+    .exp-bullets li {
+      margin-bottom: 5px;
+      line-height: 1.5;
+    }
+
+    /* Skills Pill Grid */
+    .skill-group {
+      margin-bottom: 14px;
+    }
+
+    .skill-group-title {
+      font-size: 0.8125rem;
+      font-weight: 800;
+      color: #0f172a;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .skills-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .skills-list li {
+      font-size: 0.85rem;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .skills-list li::before {
+      content: "•";
+      color: #0284c7;
+      font-weight: bold;
+    }
+
+    /* Certifications List */
+    .cert-item {
+      margin-bottom: 12px;
+    }
+
+    .cert-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.35;
+    }
+
+    .cert-date {
+      font-family: var(--font-mono);
+      font-size: 0.775rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+
+    /* Print Stylesheet */
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+        color: #000000;
+      }
+      .resume-wrapper {
+        box-shadow: none;
+        border: none;
+        padding: 15px 20px;
+        max-width: 100%;
+        border-radius: 0;
+      }
+      .action-bar {
+        display: none !important;
+      }
+      .resume-header {
+        background: #ffffff;
+        border: 1px solid #000000;
+      }
+      a {
+        text-decoration: none;
+        color: #000000;
+      }
+      .section-title {
+        border-bottom-color: #000000;
+      }
+      .exp-role {
+        color: #000000;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .resume-body-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .resume-wrapper {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="resume-wrapper">
+    
+    <!-- Top Action Bar -->
+    <div class="action-bar">
+      <a href="index.html" class="btn-action btn-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <span>&larr; Back to Portfolio</span>
+      </a>
+      <button onclick="window.print()" class="btn-action btn-print">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+        <span>Print / Save as PDF</span>
+      </button>
+    </div>
+
+    <!-- Header -->
+    <header class="resume-header">
+      <h1 class="resume-name">HIMANSHU KUMAR</h1>
+      <div class="resume-subtitle">Special Educator | Content Specialists</div>
+      <div class="resume-contacts">
+        <span>📞 <a href="tel:8851526039">8851526039</a></span>
+        <span>•</span>
+        <span>📍 Surya Niketan Apartments, Jain Nagar, Delhi</span>
+        <span>•</span>
+        <span>✉️ <a href="mailto:workwithim@protonmail.com">workwithim@protonmail.com</a></span>
+      </div>
+    </header>
+
+    <!-- About Me -->
+    <section class="section" style="margin-bottom: 28px;">
+      <h2 class="section-title">About Me</h2>
+      <p class="about-box">
+        CTET-qualified Special Educator with a B.Ed. in Special Education (Visual Impairment), combining experience in inclusive education with professional expertise in content creation, graphic design, video editing, and social media management. Skilled at developing accessible learning resources and engaging digital content, with a focus on clear communication, creativity, and meaningful audience engagement.
+      </p>
+    </section>
+
+    <!-- 2-Column Body Layout -->
+    <div class="resume-body-grid">
+      
+      <!-- Left Column: Education, Language, Certifications, Skills -->
+      <aside class="resume-left-col">
+        
+        <!-- Education -->
+        <section class="section">
+          <h2 class="section-title">Education</h2>
+          
+          <div class="edu-block">
+            <div class="edu-inst">Durgabai Deshmukh College of Special Education | DU</div>
+            <div class="edu-degree">Bachelors of Special Education (Visual Impairment)</div>
+            <div class="edu-year">2024 – 2026</div>
+          </div>
+
+          <div class="edu-block">
+            <div class="edu-inst">Sri Guru Gobind Singh College of Commerce | DU</div>
+            <div class="edu-degree">PG Diploma in Business Journalism &amp; Corporate Communication</div>
+            <div class="edu-year">2021 – 2022</div>
+          </div>
+
+          <div class="edu-block">
+            <div class="edu-inst">Motilal Nehru College (Eve) | DU</div>
+            <div class="edu-degree">Bachelors of Arts (Program)</div>
+            <div class="edu-year">2021 – 2022</div>
+          </div>
+
+          <div class="edu-block">
+            <div class="edu-inst">Army Public School, Dhaula Kuan | CBSE</div>
+            <div class="edu-degree">Intermediate</div>
+            <div class="edu-year">2015</div>
+          </div>
+
+          <div class="edu-block">
+            <div class="edu-inst">Army Public School, Dhaula Kuan | CBSE</div>
+            <div class="edu-degree">Matriculation</div>
+            <div class="edu-year">2013</div>
+          </div>
+        </section>
+
+        <!-- Language -->
+        <section class="section">
+          <h2 class="section-title">Language</h2>
+          <ul class="skills-list">
+            <li>English (Spoken &amp; Written)</li>
+            <li>Hindi (Spoken &amp; Written)</li>
+          </ul>
+        </section>
+
+        <!-- Certifications -->
+        <section class="section">
+          <h2 class="section-title">Certifications</h2>
+          
+          <div class="cert-item">
+            <div class="cert-title">Central Teacher Eligibility Test (CTET) Paper 2</div>
+            <div class="cert-date">March 2026</div>
+          </div>
+
+          <div class="cert-item">
+            <div class="cert-title">Internship Certificate | Holy Heart Special School</div>
+            <div class="cert-date">January 2026</div>
+          </div>
+
+          <div class="cert-item">
+            <div class="cert-title">Certificate of Appreciation | Blind Relief Association</div>
+            <div class="cert-date">September 2024</div>
+          </div>
+
+          <div class="cert-item">
+            <div class="cert-title">IT Certificate | Lal Bahadur Shastri Training Institute</div>
+            <div class="cert-date">February 2024</div>
+          </div>
+
+          <div class="cert-item">
+            <div class="cert-title">Internship Certificate | Jansharnam</div>
+            <div class="cert-date">March 2022</div>
+          </div>
+
+          <div class="cert-item">
+            <div class="cert-title">Fundamentals of Digital Marketing | Google</div>
+            <div class="cert-date">August 2019</div>
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section class="section">
+          <h2 class="section-title">Skills</h2>
+          
+          <div class="skill-group">
+            <div class="skill-group-title">Technical Skills</div>
+            <ul class="skills-list">
+              <li>MS Word</li>
+              <li>MS Power Point</li>
+              <li>MS Excel</li>
+              <li>Photoshop</li>
+              <li>Meta Suite</li>
+              <li>Affinity</li>
+              <li>Canva</li>
+              <li>Premier Pro</li>
+              <li>Filmora</li>
+              <li>Internet Of Things</li>
+              <li>AI Tools</li>
+              <li>Social Media Management</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-title">Soft Skills</div>
+            <ul class="skills-list">
+              <li>Digital Literacy</li>
+              <li>Script Writing</li>
+              <li>Communication</li>
+              <li>Planning</li>
+              <li>Coordination</li>
+              <li>Patience</li>
+              <li>Team Player</li>
+              <li>Adaptability</li>
+              <li>Visual Impairment Education</li>
+              <li>Braille Literacy &amp; Assistive Tech</li>
+              <li>Inclusive Classroom Management</li>
+              <li>Vocational Skills Training</li>
+            </ul>
+          </div>
+        </section>
+
+      </aside>
+
+      <!-- Right Column: Internships & Experience -->
+      <main class="resume-right-col">
+        <section class="section">
+          <h2 class="section-title">Internships &amp; Experience</h2>
+          
+          <!-- The Blind Relief Association -->
+          <div class="exp-item">
+            <div class="exp-header-row">
+              <div class="exp-org">The Blind Relief Association | Delhi</div>
+              <div class="exp-date">MAR-2026</div>
+            </div>
+            <div class="exp-role">Trainee – Vocational Unit</div>
+            <div class="roles-subtitle">Roles &amp; Responsibility</div>
+            <ul class="exp-bullets">
+              <li>Instructed visually impaired individuals in essential Activities of Daily Living (ADLs), including personal grooming, independent dressing techniques, and situational social etiquette.</li>
+              <li>Facilitated comprehensive communication and English language classes, focusing on foundational grammar, vocabulary building, and professional self-introductions to enhance expressive abilities.</li>
+              <li>Led accessible digital literacy sessions in the computer lab, providing hands-on training in document creation and email navigation, and administered practical assessments to evaluate technical proficiency.</li>
+            </ul>
+          </div>
+
+          <!-- National Association for the Blind -->
+          <div class="exp-item">
+            <div class="exp-header-row">
+              <div class="exp-org">National Association for the Blind | Delhi</div>
+              <div class="exp-date">MAR-2026</div>
+            </div>
+            <div class="exp-role">Internee Special Educator</div>
+            <div class="roles-subtitle">Roles &amp; Responsibility</div>
+            <ul class="exp-bullets">
+              <li>Executed targeted interventions for students with multiple disabilities, focusing on speech development, expressive communication through word repetition, and sensory-based tactile learning strategies.</li>
+              <li>Facilitated fine motor skill development and hand-eye coordination by designing and implementing therapeutic activities, including bead-and-thread exercises and pegboard tasks.</li>
+              <li>Guided students in mastering essential Activities of Daily Living (ADLs), providing structured support with independent feeding and functional hand coordination to foster self-reliance.</li>
+            </ul>
+          </div>
+
+          <!-- Holy Heart Special School -->
+          <div class="exp-item">
+            <div class="exp-header-row">
+              <div class="exp-org">Holy Heart Special School, Dwarka | Delhi</div>
+              <div class="exp-date">Jan-2026</div>
+            </div>
+            <div class="exp-role">Internee Special Educator</div>
+            <div class="roles-subtitle">Roles &amp; Responsibility</div>
+            <ul class="exp-bullets">
+              <li>Delivered specialized instruction for students with Autism, ADHD, and learning disabilities, focusing on foundational academics (reading, basic arithmetic) and essential life skills such as time comprehension and money management.</li>
+              <li>Facilitated interactive cognitive and physical interventions—including flashcards, typing exercises, and targeted physical activities—to improve fine motor skills, hand-eye coordination, and overall engagement.</li>
+            </ul>
+          </div>
+
+          <!-- Govt. Boys Senior Secondary School -->
+          <div class="exp-item">
+            <div class="exp-header-row">
+              <div class="exp-org">Govt. Boys Senior Secondary School, Daryaganj | Delhi</div>
+              <div class="exp-date">Nov-2025</div>
+            </div>
+            <div class="exp-role">Internee Special Educator</div>
+            <div class="roles-subtitle">Roles &amp; Responsibility</div>
+            <ul class="exp-bullets">
+              <li>Delivered structured lesson plans for Class 6 general education students, while ensuring seamless classroom continuity as a substitute teacher for Classes 7 and 8 through engaging quizzes and interactive exercises.</li>
+              <li>Instructed Class 9 Economics by simplifying complex concepts, providing clear study materials, and guiding students in articulating precise written answers to support academic comprehension.</li>
+            </ul>
+          </div>
+
+          <!-- Jormal Periwal Memorial School -->
+          <div class="exp-item">
+            <div class="exp-header-row">
+              <div class="exp-org">Jormal Periwal Memorial Senior Secondary School | Delhi</div>
+              <div class="exp-date">Aug 2025 – Sep 2025</div>
+            </div>
+            <div class="exp-role">Internee Special Educator</div>
+            <div class="roles-subtitle">Roles &amp; Responsibility</div>
+            <ul class="exp-bullets">
+              <li>Developed customized lesson plans and conceptualized tactile Teaching Learning Materials (TLMs) to facilitate inclusive, sensory-based learning and boost engagement for visually impaired students.</li>
+              <li>Orchestrated interactive classroom activities and administered specialized formative assessments to continuously track student comprehension while managing daily classroom administration.</li>
+            </ul>
+          </div>
+
+          <!-- Galaxy Advertising & Events -->
+          <div class="exp-item">
+            <div class="exp-header-row">
+              <div class="exp-org">Galaxy Advertising &amp; Events, Janakpuri | Delhi</div>
+              <div class="exp-date">Mar 2023 – May 2024</div>
+            </div>
+            <div class="exp-role">Digital Content Specialist</div>
+            <div class="roles-subtitle">Roles &amp; Responsibility</div>
+            <ul class="exp-bullets">
+              <li>Conceptualized and produced high-quality digital assets, including static graphics, motion video advertisements, and targeted newsletter campaigns to elevate client branding.</li>
+              <li>Developed strategic content calendars and scheduled digital posts, continuously researching emerging social media trends, viral audio, and optimal formats to maximize audience engagement.</li>
+              <li>Acted as the primary client liaison for digital strategy, providing daily campaign updates, actively integrating feedback, and making real-time adjustments to optimize online content.</li>
+            </ul>
+          </div>
+
+          <!-- Commwiser -->
+          <div class="exp-item">
+            <div class="exp-header-row">
+              <div class="exp-org">Commwiser, Jasola | Delhi</div>
+              <div class="exp-date">Sept 2022 – Dec 2022</div>
+            </div>
+            <div class="exp-role">Public Relation Internee</div>
+            <div class="roles-subtitle">Roles &amp; Responsibility</div>
+            <ul class="exp-bullets">
+              <li>Monitored industry news and media trends to identify relevant content, client mentions, and brand opportunities.</li>
+              <li>Managed LinkedIn and X content, created visual posts, and tracked engagement and readership performance.</li>
+            </ul>
+          </div>
+
+          <!-- NGO Jansharnam -->
+          <div class="exp-item">
+            <div class="exp-header-row">
+              <div class="exp-org">NGO Jansharnam | Delhi</div>
+              <div class="exp-date">Jan 2022 – Mar 2022</div>
+            </div>
+            <div class="exp-role">Public Relation Internee</div>
+            <div class="roles-subtitle">Roles &amp; Responsibility</div>
+            <ul class="exp-bullets">
+              <li>Developed campaign plans and coordinated with stakeholders to organize and execute online campaigns.</li>
+              <li>Created campaign taglines and captions, monitored campaign progress, and prepared performance reports.</li>
+            </ul>
+          </div>
+
+        </section>
+      </main>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
