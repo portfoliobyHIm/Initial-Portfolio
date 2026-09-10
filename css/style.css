@@ -1013,7 +1013,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-@@media (max-width: 768px) {
+/* ==========================================================================
+   MOBILE HERO REFINEMENT (Full Bleed, Sharp Image, Zero Borders)
+   ========================================================================== */
+@media (max-width: 768px) {
   /* 1. Full-bleed mobile canvas */
   .hero-section,
   .section_hero {
@@ -1033,68 +1036,78 @@ h1, h2, h3, h4, h5, h6 {
     width: 100% !important;
     height: 100% !important;
     overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  /* 2. Edge-to-edge portrait stage */
+  /* 2. Edge-to-edge portrait stage filling 100% with no black borders */
   #hero-portrait-stage,
   .hero_portrait_stage {
     position: absolute !important;
     inset: 0 !important;
-    width: 100% !important;
-    max-width: none !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
     height: 100% !important;
+    min-height: 100% !important;
     margin: 0 !important;
+    padding: 0 !important;
     border-radius: 0 !important;
+    z-index: 1 !important;
   }
 
-  /* 3. Force picture tags & images to fill 100% */
-  .portrait-layer-frosted,
+  /* 3. Disable blur and square reticle entirely on mobile (keep sharp) */
+  #hero-reticle,
+  .hero-reticle-tracker,
+  .reticle-crosshair {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  .portrait-layer-frosted {
+    display: none !important;
+  }
+
   .portrait-layer-clear,
-  .portrait-layer-frosted picture,
-  .portrait-layer-clear picture {
+  #hero-reveal-layer {
     position: absolute !important;
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    display: block !important;
+    opacity: 1 !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    mask: none !important;
+    -webkit-mask: none !important;
   }
 
-  .hero-img {
-    width: 100% !important;
+  /* 4. Force image to fill width and height edge-to-edge */
+  .hero_portrait_stage img,
+  .hero-img,
+  .portrait-layer-clear img {
+    width: 100vw !important;
     height: 100% !important;
     object-fit: cover !important;
     object-position: center top !important;
+    display: block !important;
     border-radius: 0 !important;
-  }
-
-  /* 4. Float name overlay at the bottom */
-  .hero_display_title_wrap {
-    position: absolute !important;
-    bottom: 24px !important;
-    left: 0 !important;
-    width: 100% !important;
-    padding: 0 16px !important;
-    z-index: 20 !important;
-    box-sizing: border-box !important;
-  }
-
-  .hero_display_name {
-    font-size: clamp(2.2rem, 10.5vw, 3.6rem) !important;
-    line-height: 1.05 !important;
-    display: flex !important;
-    justify-content: space-between !important;
-    width: 100% !important;
-    text-align: center !important;
+    opacity: 1 !important;
+    filter: none !important;
   }
 
   /* 5. Center horizontal baseline labels */
   .hero_horizontal_labels {
+    position: absolute !important;
     top: 55% !important;
+    left: 0 !important;
+    width: 100% !important;
     padding: 0 16px !important;
     display: flex !important;
     flex-wrap: wrap !important;
     justify-content: center !important;
     gap: 8px 14px !important;
+    z-index: 25 !important;
+    box-sizing: border-box !important;
   }
 
   .label-inner-left,
@@ -1109,10 +1122,36 @@ h1, h2, h3, h4, h5, h6 {
   .hero-bar-label {
     font-size: 11px !important;
     letter-spacing: 0.1em !important;
+    position: static !important;
+  }
+
+  /* 6. Clamp name overlay to screen bottom */
+  .hero_display_title_wrap {
+    position: absolute !important;
+    bottom: 24px !important;
+    left: 0 !important;
+    width: 100% !important;
+    padding: 0 16px !important;
+    z-index: 20 !important;
+    box-sizing: border-box !important;
+  }
+
+  .hero_display_name {
+    font-size: clamp(2rem, 9.5vw, 3.4rem) !important;
+    line-height: 1.05 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 4px 10px !important;
+    width: 100% !important;
+  }
+
+  .hero_display_name .name_word {
+    white-space: normal !important;
+    display: inline-block !important;
   }
 }
-
-/* Split Line / Handle */
 .split-divider-line {
   position: absolute;
   top: 0;
