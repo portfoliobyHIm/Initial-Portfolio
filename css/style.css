@@ -1070,10 +1070,19 @@ textarea.form-control {
 }
 
 /* ==========================================================================
-   MOBILE RESPONSIVENESS (FULL-BLEED + LIQUID GLASS + TOUCH REVEAL)
+   MOBILE HERO & RESPONSIVENESS (FULL BLEED + GLASSMORPHISM + SCROLL ENABLED)
    ========================================================================== */
 @media (max-width: 768px) {
-  /* 1. Full-bleed Hero Stage */
+  /* 1. Ensure natural vertical page scrolling throughout mobile document */
+  html, body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    height: auto !important;
+    position: relative !important;
+    touch-action: auto !important;
+  }
+
+  /* 2. Full-bleed Hero Stage (fits phone viewport without side bars) */
   .hero-section,
   .section_hero {
     position: relative !important;
@@ -1084,6 +1093,7 @@ textarea.form-control {
     overflow: hidden !important;
     padding: 0 !important;
     margin: 0 !important;
+    touch-action: auto !important;
   }
 
   .hero_canvas {
@@ -1094,8 +1104,10 @@ textarea.form-control {
     overflow: hidden !important;
     margin: 0 !important;
     padding: 0 !important;
+    touch-action: auto !important;
   }
 
+  /* 3. Portrait stage allows touch swipes to pass through to scroll */
   #hero-portrait-stage,
   .hero_portrait_stage {
     position: absolute !important;
@@ -1108,17 +1120,18 @@ textarea.form-control {
     padding: 0 !important;
     border-radius: 0 !important;
     z-index: 1 !important;
-    touch-action: none;
+    touch-action: auto !important;
+    pointer-events: none !important;
   }
 
-  /* 2. Glass Layers: Blur & Clip-path Reveal */
-  .portrait-layer-frosted,
-  .portrait-layer-clear {
+  /* 4. Keep Glassmorphism Blur & Tint Layer Active */
+  .portrait-layer-frosted {
     position: absolute !important;
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
     display: block !important;
+    z-index: 1 !important;
   }
 
   .hero-img {
@@ -1127,6 +1140,7 @@ textarea.form-control {
     object-fit: cover !important;
     object-position: center top !important;
     border-radius: 0 !important;
+    display: block !important;
   }
 
   .portrait-layer-frosted .img-blur {
@@ -1140,31 +1154,28 @@ textarea.form-control {
     background: rgba(255, 255, 255, 0.12) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
-  }
-
-  .portrait-layer-clear {
-    clip-path: polygon(
-      var(--sq-left, 50%) var(--sq-top, 50%),
-      var(--sq-right, 50%) var(--sq-top, 50%),
-      var(--sq-right, 50%) var(--sq-bottom, 50%),
-      var(--sq-left, 50%) var(--sq-bottom, 50%)
-    ) !important;
-    -webkit-clip-path: polygon(
-      var(--sq-left, 50%) var(--sq-top, 50%),
-      var(--sq-right, 50%) var(--sq-top, 50%),
-      var(--sq-right, 50%) var(--sq-bottom, 50%),
-      var(--sq-left, 50%) var(--sq-bottom, 50%)
-    ) !important;
-  }
-
-  .hero-reticle-tracker {
-    width: 180px !important;
-    height: 180px !important;
     display: block !important;
+    z-index: 2 !important;
+  }
+
+  /* 5. Disable desktop-only reticle box and clip-path cutouts on mobile */
+  .portrait-layer-clear,
+  #hero-reveal-layer {
+    display: none !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+  }
+
+  #hero-reticle,
+  .hero-reticle-tracker,
+  .reticle-crosshair {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
     pointer-events: none !important;
   }
 
-  /* 3. Role Labels Centered */
+  /* 6. Centered Baseline Role Labels */
   .hero_horizontal_labels {
     position: absolute !important;
     top: 55% !important;
@@ -1195,7 +1206,7 @@ textarea.form-control {
     position: static !important;
   }
 
-  /* 4. Name Clamped to Screen Bottom */
+  /* 7. Clamped Display Name at Screen Bottom */
   .hero_display_title_wrap {
     position: absolute !important;
     bottom: 24px !important;
@@ -1223,21 +1234,39 @@ textarea.form-control {
     display: inline-block !important;
   }
 
-  /* 5. Mobile Stacking for Rest of Site */
+  /* 8. Stack and display all following portfolio sections cleanly on mobile */
+  .about-section,
+  .toolkit-section,
+  .work-section,
+  .connect-section {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    z-index: 30 !important;
+  }
+
   .about-grid,
   .connect-grid,
   .connect-cards-list {
+    display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 28px !important;
   }
 
   .about-stats-row {
+    display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
   }
 
-  .bento-card.col-span-12,
-  .bento-card.col-span-6,
-  .bento-card.col-span-4 {
-    grid-column: span 12 !important;
+  .bento-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  .bento-card {
+    width: 100% !important;
+    grid-column: auto !important;
   }
 }
