@@ -430,12 +430,14 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  background-color: var(--bg-dark);
 }
 
 .hero_canvas {
   position: relative;
   width: 100%;
   height: 100%;
+  background-color: var(--bg-dark);
 }
 
 #hero-portrait-stage,
@@ -466,7 +468,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .portrait-layer-frosted .img-blur {
-  filter: blur(14px) brightness(0.9);
+  filter: blur(14px) brightness(0.85) contrast(1.05);
   transform: scale(1.04);
 }
 
@@ -475,7 +477,7 @@ h1, h2, h3, h4, h5, h6 {
   inset: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(12, 13, 18, 0.35);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
@@ -1070,7 +1072,7 @@ textarea.form-control {
 }
 
 /* ==========================================================================
-   MOBILE HERO & RESPONSIVENESS (FULL BLEED + GLASSMORPHISM + SCROLL ENABLED)
+   MOBILE HERO & RESPONSIVENESS (MATCHED DESKTOP BACKGROUND + SCROLL ENABLED)
    ========================================================================== */
 @media (max-width: 768px) {
   /* 1. Ensure natural vertical page scrolling throughout mobile document */
@@ -1082,7 +1084,7 @@ textarea.form-control {
     touch-action: auto !important;
   }
 
-  /* 2. Full-bleed Hero Stage (fits phone viewport without side bars) */
+  /* 2. Full-bleed Hero Stage (Matches Desktop Obsidian Background 1-to-1) */
   .hero-section,
   .section_hero {
     position: relative !important;
@@ -1093,6 +1095,7 @@ textarea.form-control {
     overflow: hidden !important;
     padding: 0 !important;
     margin: 0 !important;
+    background-color: var(--bg-dark) !important;
     touch-action: auto !important;
   }
 
@@ -1104,10 +1107,11 @@ textarea.form-control {
     overflow: hidden !important;
     margin: 0 !important;
     padding: 0 !important;
+    background-color: var(--bg-dark) !important;
     touch-action: auto !important;
   }
 
-  /* 3. Portrait stage allows touch swipes to pass through to scroll */
+  /* 3. Portrait stage allows touch gestures to pass through to scroll freely */
   #hero-portrait-stage,
   .hero_portrait_stage {
     position: absolute !important;
@@ -1124,7 +1128,7 @@ textarea.form-control {
     pointer-events: none !important;
   }
 
-  /* 4. Keep Glassmorphism Blur & Tint Layer Active */
+  /* 4. Keep Glassmorphism Blur & Dark Tint Layer Active (Desktop Matched) */
   .portrait-layer-frosted {
     position: absolute !important;
     inset: 0 !important;
@@ -1144,14 +1148,14 @@ textarea.form-control {
   }
 
   .portrait-layer-frosted .img-blur {
-    filter: blur(14px) brightness(0.9) !important;
+    filter: blur(14px) brightness(0.85) contrast(1.05) !important;
     transform: scale(1.05) !important;
   }
 
   .glass-sheet-tint {
     position: absolute !important;
     inset: 0 !important;
-    background: rgba(255, 255, 255, 0.12) !important;
+    background: rgba(12, 13, 18, 0.35) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(10px) !important;
     display: block !important;
