@@ -8,6 +8,7 @@
  * - Copy-to-Clipboard with Tooltip Feedback
  * - Contact Form Handler & Toast Notification
  * - Intersection Observer Scroll Reveals
+ * - Video Lightbox Modal & Local Video Player
  */
 
 (function () {
@@ -155,7 +156,7 @@
 
     emailCard.addEventListener('click', (e) => {
       e.preventDefault();
-      const email = emailCard.getAttribute('data-email') || 'hello@yourportfolio.com';
+      const email = emailCard.getAttribute('data-email') || 'workwithhim03@gmail.com';
 
       navigator.clipboard.writeText(email).then(() => {
         copyTooltip.textContent = 'Yay! Email copied to clipboard ✅';
@@ -235,7 +236,6 @@
     const modalTitle = document.getElementById('video-modal-title');
     const modalContainer = document.getElementById('video-modal-container');
     const modalClose = document.getElementById('video-modal-close');
-    const openBtns = document.querySelectorAll('.open-video-modal-btn');
 
     // Autoplay and loop all inline loop videos seamlessly with custom speed
     const seamlessVideos = document.querySelectorAll('video[autoplay]');
@@ -277,88 +277,111 @@
       });
     }
 
-    // Modal Trigger Buttons
-    openBtns.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
+    // Delegated click listener for all video trigger buttons and preview cards
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('.open-video-modal-btn');
+      if (trigger) {
+        e.preventDefault();
         e.stopPropagation();
-        const url = btn.getAttribute('data-video-url') || 'assets/videos/showcase.mp4';
-        const title = btn.getAttribute('data-title') || 'Video Project Preview';
-        const speed = parseFloat(btn.getAttribute('data-speed')) || 1.0;
-        openModal(url, title, speed);
-      });
+        const url = trigger.getAttribute('data-video-url');
+        const title = trigger.getAttribute('data-title') || 'Video Project Preview';
+        const speed = parseFloat(trigger.getAttribute('data-speed')) || 1.0;
+        if (url) {
+          openModal(url, title, speed);
+        }
+      }
     });
 
     function openModal(src, title, speed = 1.0) {
       if (!modal || !modalContainer) return;
-      modalTitle.textContent = title;
+      if (modalTitle) modalTitle.textContent = title;
 
-      if (src.match(/\.(jpeg|jpg|gif|png|webp)$/i)) {
+      modalContainer.innerHTML = '';
+      const cleanSrc = encodeURI(decodeURI(src.trim()));
+
+      if (cleanSrc.match(/\.(jpeg|jpg|gif|png|webp)$/i)) {
         // Embed High-Res Image Preview
         modalContainer.innerHTML = `
           <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:16px; background:#0b0d14;">
-            <img src="${src}" alt="${title}" style="max-width:100%; max-height:100%; object-fit:contain; border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,0.6);">
+            <img src="${cleanSrc}" alt="${title}" style="max-width:100%; max-height:100%; object-fit:contain; border-radius:8px; box-shadow:0 10px 40px rgba(0,0,0,0.6);">
           </div>
         `;
-      } else if (src.includes('youtube.com') || src.includes('youtu.be')) {
+      } else if (cleanSrc.includes('youtube.com') || cleanSrc.includes('youtu.be')) {
         let videoId = '';
-        const ytMatch = src.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/);
+        const ytMatch = cleanSrc.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/);
         if (ytMatch && ytMatch[1]) {
           videoId = ytMatch[1];
-        } else if (src.includes('watch?v=')) {
-          videoId = src.split('watch?v=')[1].split('&')[0];
-        } else if (src.includes('youtu.be/')) {
-          videoId = src.split('youtu.be/')[1].split('?')[0];
-        } else if (src.includes('embed/')) {
-          videoId = src.split('embed/')[1].split('?')[0];
+        } else if (cleanSrc.includes('watch?v=')) {
+          videoId = cleanSrc.split('watch?v=')[1].split('&')[0];
+        } else if (cleanSrc.includes('youtu.be/')) {
+          videoId = cleanSrc.split('youtu.be/')[1].split('?')[0];
+        } else if (cleanSrc.includes('embed/')) {
+          videoId = cleanSrc.split('embed/')[1].split('?')[0];
         }
 
         const ytWatchUrl = `https://www.youtube.com/watch?v=${videoId}`;
         modalContainer.innerHTML = `
           <div style="position:relative; width:100%; height:100%; background:#000;">
             <iframe 
-              src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1" 
+              src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
               allowfullscreen 
-              style="width:100%; height:100%; border:none;">
+              style="width:100%; height:100%; border:none; display:block;">
             </iframe>
             <div style="position:absolute; bottom:14px; right:16px; z-index:20; background:rgba(15,23,42,0.92); backdrop-filter:blur(8px); padding:6px 14px; border-radius:9999px; border:1px solid rgba(255,255,255,0.18); box-shadow:0 6px 20px rgba(0,0,0,0.4);">
-              <a href="${ytWatchUrl}" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-size:0.8125rem; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px; transition:color 0.2s;">
+              <a href="${ytWatchUrl}" target="_blank" rel="noopener noreferrer" style="color:#ffffff; font-size:0.8125rem; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="#ff4d4d"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 <span>Watch on YouTube ↗</span>
               </a>
             </div>
           </div>
         `;
-      } else if (src.includes('vimeo.com')) {
-        let vimeoId = src.split('vimeo.com/')[1].split('?')[0];
+      } else if (cleanSrc.includes('vimeo.com')) {
+        let vimeoId = cleanSrc.split('vimeo.com/')[1].split('?')[0];
         modalContainer.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?autoplay=1" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none;"></iframe>`;
       } else {
-        // Embed HTML5 Video
-        modalContainer.innerHTML = `
-          <video id="modal-html5-video" controls autoplay style="width:100%; height:100%; object-fit:contain; background:#000;">
-            <source src="${src}" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        `;
-        const modalVid = document.getElementById('modal-html5-video');
-        if (modalVid && (speed !== 1.0 || src.includes('posters_showcase_loop'))) {
-          const targetSpeed = speed !== 1.0 ? speed : 0.8;
-          modalVid.defaultPlaybackRate = targetSpeed;
-          modalVid.playbackRate = targetSpeed;
-          modalVid.addEventListener('play', () => { modalVid.playbackRate = targetSpeed; });
-        }
+        // Embed HTML5 Video with native DOM construction
+        const video = document.createElement('video');
+        video.id = 'modal-html5-video';
+        video.controls = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        video.setAttribute('playsinline', '');
+        video.style.width = '100%';
+        video.style.height = '100%';
+        video.style.objectFit = 'contain';
+        video.style.background = '#000000';
+
+        const source = document.createElement('source');
+        source.src = cleanSrc;
+        source.type = 'video/mp4';
+
+        video.appendChild(source);
+        modalContainer.appendChild(video);
+
+        const targetSpeed = speed !== 1.0 ? speed : (cleanSrc.includes('posters_showcase_loop') ? 0.8 : 1.0);
+        video.defaultPlaybackRate = targetSpeed;
+        video.playbackRate = targetSpeed;
+
+        video.load();
+        video.play().catch((err) => {
+          console.warn('Playback gesture needed or loading:', err);
+        });
       }
 
+      // Open modal and remove aria-hidden so focus is permitted
       modal.classList.add('open');
+      modal.removeAttribute('aria-hidden');
       document.body.classList.add('no-scroll');
     }
 
     function closeModal() {
       if (!modal) return;
       modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
       document.body.classList.remove('no-scroll');
       if (modalContainer) {
-        modalContainer.innerHTML = ''; // Stop video playback
+        modalContainer.innerHTML = ''; // Stop video playback and destroy audio buffer
       }
     }
 
