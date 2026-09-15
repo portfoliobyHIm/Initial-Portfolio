@@ -103,6 +103,107 @@
         });
       });
     }
+
+    // ==========================================================================
+    // VIDEO LIGHTBOX MODAL CONTROLLER (FIXED FOR MP4 & ARIA CONFLICTS)
+    // ==========================================================================
+    const modal = document.getElementById('video-lightbox');
+    const container = document.getElementById('video-modal-container');
+    const titleEl = document.getElementById('video-modal-title');
+    const closeBtn = document.getElementById('video-modal-close');
+
+    function openVideoModal(videoUrl, title) {
+      if (!modal || !container) return;
+
+      if (titleEl && title) {
+        titleEl.textContent = title;
+      }
+
+      container.innerHTML = '';
+
+      // Check for YouTube URLs
+      if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+        let embedUrl = videoUrl;
+        if (videoUrl.includes('watch?v=')) {
+          const videoId = videoUrl.split('watch?v=')[1].split('&')[0];
+          embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+        } else if (videoUrl.includes('youtu.be/')) {
+          const videoId = videoUrl.split('youtu.be/')[1].split('?')[0];
+          embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+        }
+        container.innerHTML = `<iframe src="${embedUrl}" width="100%" height="100%" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%;display:block;border:none;"></iframe>`;
+      } 
+      // Direct Local / MP4 Video Handling
+      else {
+        const video = document.createElement('video');
+        video.id = 'modal-html5-video';
+        video.controls = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        video.setAttribute('playsinline', '');
+        video.style.width = '100%';
+        video.style.height = '100%';
+        video.style.display = 'block';
+        video.style.objectFit = 'contain';
+
+        const source = document.createElement('source');
+        // Clean URL to handle raw spaces or encoded %20
+        source.src = encodeURI(decodeURI(videoUrl.trim()));
+        source.type = 'video/mp4';
+
+        video.appendChild(source);
+        container.appendChild(video);
+
+        video.load();
+        video.play().catch((err) => {
+          console.warn('Playback error or user gesture required:', err);
+        });
+      }
+
+      // Show modal & resolve aria-hidden accessibility collision
+      modal.classList.add('open');
+      modal.removeAttribute('aria-hidden');
+      document.body.classList.add('no-scroll');
+    }
+
+    function closeVideoModal() {
+      if (!modal) return;
+
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
+
+      if (container) {
+        container.innerHTML = '';
+      }
+    }
+
+    // Global listener for all modal trigger buttons and elements
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('.open-video-modal-btn');
+      if (trigger) {
+        e.preventDefault();
+        const videoUrl = trigger.getAttribute('data-video-url');
+        const videoTitle = trigger.getAttribute('data-title') || 'Project Video Preview';
+        if (videoUrl) {
+          openVideoModal(videoUrl, videoTitle);
+        }
+        return;
+      }
+
+      // Close button or outside backdrop click
+      if (e.target.closest('#video-modal-close') || e.target === modal) {
+        e.preventDefault();
+        closeVideoModal();
+      }
+    });
+
+    // Escape key listener to close modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && modal.classList.contains('open')) {
+        closeVideoModal();
+      }
+    });
   }
 
   // Initialize on DOM ready
